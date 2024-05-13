@@ -1,0 +1,42 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: "app-service1"
+  description: "A cool quarkus app"
+  annotations:
+    argocd/app-name: app-service1-dev
+    backstage.io/kubernetes-id: app-service1
+    backstage.io/kubernetes-namespace: app-service1-dev
+    janus-idp.io/tekton: app-service1
+    backstage.io/source-location: url:https://github.com/janus-backstage/app-service1
+    backstage.io/techdocs-ref: url:https://github.com/janus-backstage/app-service1
+    gitlab.com/project-slug: janus-backstage/app-service1
+    quay.io/repository-slug: "janus-backstage/app-service1"
+  tags:
+    - java
+    - quarkus
+  links:
+    - url: https://devspaces.apps.ocp4.quitala.eu/#https://github.com/janus-backstage/app-service1
+      title: OpenShift Dev Spaces (VS Code)
+      icon: web
+    - url: https://devspaces.apps.ocp4.quitala.eu/#https://github.com/janus-backstage/app-service1?che-editor=che-incubator/che-idea/latest
+      title: OpenShift Dev Spaces (JetBrains IntelliJ)
+      icon: web
+spec:
+  type: service
+  lifecycle: production
+  owner: "user1"
+  providesApis:
+    - "app-service1"
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: "app-service1"
+  description: "A cool quarkus app"
+spec:
+  type: openapi
+  lifecycle: production
+  owner: "user1"
+  definition:
+    $text: ./openapi.yaml
